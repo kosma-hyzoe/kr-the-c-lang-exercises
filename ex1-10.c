@@ -14,6 +14,6 @@ int main() {
                 else if (c == '\\') printf("\\\\");
                 else putchar(c);
         }
-                return 0;
+        return 0;
 }
 
