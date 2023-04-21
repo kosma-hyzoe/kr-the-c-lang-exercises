@@ -1,7 +1,7 @@
 [
 {
   "directory": "/home/kosma/kr-the-c-lang-exercises/build",
-  "command": "/usr/bin/gcc   -g -std=gnu11 -o CMakeFiles/ex1-5.dir/ex1-5.c.o -c /home/kosma/kr-the-c-lang-exercises/ex1-5.c",
+  "command": "/usr/bin/clang   -g -std=gnu11 -o CMakeFiles/ex1-5.dir/ex1-5.c.o -c /home/kosma/kr-the-c-lang-exercises/ex1-5.c",
   "file": "/home/kosma/kr-the-c-lang-exercises/ex1-5.c"
 }
 ]

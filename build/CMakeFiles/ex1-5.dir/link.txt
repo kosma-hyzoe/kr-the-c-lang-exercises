@@ -1,1 +1,1 @@
-/usr/bin/gcc -g -rdynamic CMakeFiles/ex1-5.dir/ex1-5.c.o -o ex1-5 
+/usr/bin/clang -g -rdynamic CMakeFiles/ex1-5.dir/ex1-5.c.o -o ex1-5 

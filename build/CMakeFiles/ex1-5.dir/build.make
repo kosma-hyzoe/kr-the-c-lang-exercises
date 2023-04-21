@@ -73,15 +73,15 @@ CMakeFiles/ex1-5.dir/ex1-5.c.o: CMakeFiles/ex1-5.dir/flags.make
 CMakeFiles/ex1-5.dir/ex1-5.c.o: ../ex1-5.c
 CMakeFiles/ex1-5.dir/ex1-5.c.o: CMakeFiles/ex1-5.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kosma/kr-the-c-lang-exercises/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/ex1-5.dir/ex1-5.c.o"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ex1-5.dir/ex1-5.c.o -MF CMakeFiles/ex1-5.dir/ex1-5.c.o.d -o CMakeFiles/ex1-5.dir/ex1-5.c.o -c /home/kosma/kr-the-c-lang-exercises/ex1-5.c
+	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ex1-5.dir/ex1-5.c.o -MF CMakeFiles/ex1-5.dir/ex1-5.c.o.d -o CMakeFiles/ex1-5.dir/ex1-5.c.o -c /home/kosma/kr-the-c-lang-exercises/ex1-5.c
 
 CMakeFiles/ex1-5.dir/ex1-5.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ex1-5.dir/ex1-5.c.i"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/kosma/kr-the-c-lang-exercises/ex1-5.c > CMakeFiles/ex1-5.dir/ex1-5.c.i
+	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/kosma/kr-the-c-lang-exercises/ex1-5.c > CMakeFiles/ex1-5.dir/ex1-5.c.i
 
 CMakeFiles/ex1-5.dir/ex1-5.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ex1-5.dir/ex1-5.c.s"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/kosma/kr-the-c-lang-exercises/ex1-5.c -o CMakeFiles/ex1-5.dir/ex1-5.c.s
+	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/kosma/kr-the-c-lang-exercises/ex1-5.c -o CMakeFiles/ex1-5.dir/ex1-5.c.s
 
 # Object files for target ex1-5
 ex1__5_OBJECTS = \
