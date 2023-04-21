@@ -6,6 +6,6 @@ int main()
     enum foobar myFoo = foo;
 
     printf("%d\n", myFoo);
-
+    
     return 0;
 }

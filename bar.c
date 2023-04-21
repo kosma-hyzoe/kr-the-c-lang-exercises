@@ -1,24 +1,25 @@
 #include <stdio.h>
+#include <string.h>
 
 #define IN 1
 #define OUT 0
 #define MAXWORDLEN 15
 
-int main()
+int main(int argc, char *argv[])
 {
 
 	int wordlens[MAXWORDLEN];
 	for (int i = 0; i < MAXWORDLEN; i++)
 		wordlens[i] = 0;
 
-	printf("Your input: \n");
 	int state = OUT;
 
 	int wordlen, ovflow = 0;
 	int c;
 
-	while (c = getchar()) {
-		if (c == ' ' || c == '\n' || c == '\t' || c == EOF) {
+	for (int i = 0; i < strlen(argv[1]); i++) {
+        c = argv[1][i];
+		if (c == ' ' || c == '\n' || c == '\t') {
 			if (state == IN && wordlen > 15) {
 				state = OUT;
 				ovflow++;
@@ -36,8 +37,10 @@ int main()
 		}
 
 		else {
-			if (state == OUT)
+			if (state == OUT){
 				state = IN;
+            } else if (state == IN && i < strlen(argv[1])) 
+
 			wordlen++;
 		}
 

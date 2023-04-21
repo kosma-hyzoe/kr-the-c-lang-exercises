@@ -22,7 +22,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": [],
+            "args": ["bar fooooooooooooooooooooooooooooooooooooooo bar"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
