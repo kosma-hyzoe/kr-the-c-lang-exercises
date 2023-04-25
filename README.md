@@ -1,4 +1,4 @@
-# C chad
+# Learning C
 
 My materials for learning C.
 
