@@ -1,6 +1,8 @@
 {
     "cmake.configureOnOpen": true,
     "files.associations": {
-        "random": "c"
+        "random": "c",
+        "stdio.h": "c",
+        "chararrchal.h": "c"
     }
 }
