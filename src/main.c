@@ -3,9 +3,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "buchalka/strfunchal.h"
 
 int main(int argc, char *argv[])
 {
+	char *pChar = "foo";
+
+	printf("%c\n", *pChar);
 	return 0;
 }

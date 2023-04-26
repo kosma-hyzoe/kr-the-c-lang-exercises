@@ -3,6 +3,9 @@
     "files.associations": {
         "random": "c",
         "stdio.h": "c",
-        "chararrchal.h": "c"
+        "chararrchal.h": "c",
+        "strfunchal.h": "c",
+        "string.h": "c",
+        "stdbool.h": "c"
     }
 }

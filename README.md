@@ -2,6 +2,13 @@
 
 My materials for learning C.
 
+> C is a Spartan language, and so should your naming be. Unlike Modula-2 and
+>Pascal programmers, C programmers do not use cute names like
+>ThisVariableIsATemporaryCounter. A C programmer would call that variable tmp,
+>which is much easier to write, and not the least more difficult to understand.
+>
+> *from the [Linux kernel coding style](https://www.kernel.org/doc/html/v4.10/process/coding-style.html)*
+
 ## Contents
 
 * [K&R](https://en.wikipedia.org/wiki/The_C_Programming_Language) exercise solutions
