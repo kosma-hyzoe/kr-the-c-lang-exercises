@@ -2,6 +2,7 @@
 
 ## Misc
 
+* variable-length arrs are only supported since c11
 * `.` operator for stucture variables, `->` for struct pointers 
 * \r -
 * \a - alert
@@ -114,7 +115,13 @@ while (token != NULL) {
 * NOTE: `(*p)++` != `*p++`
 
 * `void* vp = &foo;` - a pointer that can point to anything
-* needs to be cast to get value `printf("%d\n", *(int *)vptr)`
+* needs to be cast to get value `printf("%d\n", *(int *)vptr)`                 
 * `*(int *)vptr` - dereference a void pointer cast to an int pointer
 * `vp = &values[0]` == `vp = values` 
   `ar[i]` == `*(ar+i)`
+
+## Heap vs stack
+ 
+ 
+* dynamic malloc stores to heap
+*  
