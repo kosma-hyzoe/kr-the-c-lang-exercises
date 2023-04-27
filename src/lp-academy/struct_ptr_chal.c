@@ -14,7 +14,7 @@ void readItem(struct item *item)
 	scanf("%s", item->itemName);
 
 	printf("Quantity: \n");
-	scanf("%i", &item->quantity);
+	scanf("%i", &(item->quantity));
 	printf("Price:\n");
 	scanf("%f", &item->price);
         item->amount = item->quantity * item->price;

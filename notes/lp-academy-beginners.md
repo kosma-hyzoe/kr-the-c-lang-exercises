@@ -155,4 +155,8 @@ today = (struct date) {9, 26, 2015};
 int arr;
 arr = (int[]) {3, 2, 1};
 
+
+struct date *todayp = &today;
+(*todayp).month = 3;
+todayp->month = 4;
 ```
