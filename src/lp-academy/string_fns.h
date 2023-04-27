@@ -32,14 +32,3 @@ void bblsrt(int arr[])
                 }
         }
 }
-
-// char* revstr(char* in) {
-//     int len = strlen(in);
-//     char* rev = malloc(len + 1); // allocate memory for reversed
-//     string for (int i = 0; i < len; i++) {
-//         rev[i] = in[len - i - 1]; // copy characters from input
-//         string in reverse order
-//     }
-//     rev[len] = '\0'; // terminate reversed string
-//     return rev;
-// }

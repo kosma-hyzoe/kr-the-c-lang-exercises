@@ -3,7 +3,7 @@
 ## Misc
 
 * variable-length arrs are only supported since c11
-* `.` operator for stucture variables, `->` for struct pointers 
+* `.` operator for stucture variables, `->` for struct pointers
 * \r -
 * \a - alert
 
@@ -108,20 +108,51 @@ while (token != NULL) {
 * you can determine distance between array elements by pointer substr.
 
 * do not `int *pt; *pt = 5;` - it will place "5" ANYWHERE in memory.
-* creating a long pointer does not allocate memory for the long, just the 
+* creating a long pointer does not allocate memory for the long, just the
   pointer
-* `const int *p;` - "pointer to a constant int" 
+* `const int *p;` - "pointer to a constant int"
 * `int *const p;` - "constant pointer to an int"
 * NOTE: `(*p)++` != `*p++`
 
 * `void* vp = &foo;` - a pointer that can point to anything
-* needs to be cast to get value `printf("%d\n", *(int *)vptr)`                 
+* needs to be cast to get value `printf("%d\n", *(int *)vptr)`
 * `*(int *)vptr` - dereference a void pointer cast to an int pointer
-* `vp = &values[0]` == `vp = values` 
+* `vp = &values[0]` == `vp = values`
   `ar[i]` == `*(ar+i)`
 
-## Heap vs stack
- 
- 
-* dynamic malloc stores to heap
-*  
+## Structures
+
+```c
+struct date
+{
+ int month;
+ int day;
+ int year;
+}
+
+struct date today = {4, 27, 2023};
+struct date y2023 = {NULL, NULL, 2023};
+struct date april = {4};
+struct date yadot = {.year=2023, .day=27, .month=4};
+
+/* immediately create a struct instance */
+struct date
+{
+ int month;
+ int day;
+ int year;
+} today;
+
+/* anonymous structs */
+struct
+{
+ int foo;
+ int bar;
+} tempstruct;
+
+/* c11+: compound literals - assign multiple values on one line */
+today = (struct date) {9, 26, 2015};
+int arr;
+arr = (int[]) {3, 2, 1};
+
+```

@@ -6,7 +6,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/bin/${fileBasenameNoExtension}",
             "args": [
-                "bar"
+                "input.wav", "output.wav", "4.0"
             ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",

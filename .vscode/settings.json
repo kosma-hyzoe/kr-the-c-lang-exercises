@@ -6,6 +6,9 @@
         "chararrchal.h": "c",
         "strfunchal.h": "c",
         "string.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "cstdio": "c",
+        "atomic": "c",
+        "cstdint": "c"
     }
 }
