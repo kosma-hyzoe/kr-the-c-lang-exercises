@@ -6,10 +6,10 @@
             "request": "launch",
             "program": "${workspaceFolder}/bin/${fileBasenameNoExtension}",
             "args": [
-                "input.wav", "output.wav", "4.0"
+                "in.txt"
             ],
             "stopAtEntry": false,
-            "cwd": "${fileDirname}",
+            "cwd": "${workspaceFolder}/wd",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",

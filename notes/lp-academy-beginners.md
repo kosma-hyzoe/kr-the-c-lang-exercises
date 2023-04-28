@@ -2,10 +2,9 @@
 
 ## Misc
 
-* variable-length arrs are only supported since c11
-* `.` operator for stucture variables, `->` for struct pointers
-* \r -
-* \a - alert
+* abort(), atexit() - define what happens on 1 and 0 exits
+* qsort() - sort array
+* system() - use system commands
 
 ## Datatypes
 
@@ -23,7 +22,7 @@ bool voolVar = true;
 
 ### short, long unsigned
 
-* char < short int < int < long int
+* char < short int < int < lonv int
 * float < double < long double
 
 ```c
@@ -122,6 +121,8 @@ while (token != NULL) {
 
 ## Structures
 
+* better to use struct pointers as fuction arguments, probably const
+
 ```c
 struct date
 {
@@ -160,3 +161,16 @@ struct date *todayp = &today;
 (*todayp).month = 3;
 todayp->month = 4;
 ```
+## Files
+
+* w, a, r - write, append, read
+* + - rw, create if doesnt exist
+
+
+* `rename()`, `remove()` - returns 0/1
+* getc() - fgetc() with macros
+* rewind() - place position at the beginning
+* fgets():
+	* read until `'\n'` or nchars-1
+	* retains the `'\n'`
+	* returns NULL if EOF, else char \*

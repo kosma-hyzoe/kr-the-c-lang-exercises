@@ -27,3 +27,8 @@ int nostrlenstrlen(char *s)
 
 	return len;
 }
+
+int main()
+{
+	return 0;
+}
