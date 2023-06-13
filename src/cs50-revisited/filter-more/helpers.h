@@ -11,6 +11,3 @@ void edges(int height, int width, RGBTRIPLE image[height][width]);
 
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width]);
-
-// Demon eye
-void offset_color(int height, int width, RGBTRIPLE image[height][width]);

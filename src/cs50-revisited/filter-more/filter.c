@@ -110,12 +110,7 @@ int main(int argc, char *argv[])
     case 'r':
         reflect(height, width, image);
         break;
-    // Demon eye
-    case 'o':
-        offset_color(height, width, image);
-        break;
     }
-
     // Write outfile's BITMAPFILEHEADER
     fwrite(&bf, sizeof(BITMAPFILEHEADER), 1, outptr);
 

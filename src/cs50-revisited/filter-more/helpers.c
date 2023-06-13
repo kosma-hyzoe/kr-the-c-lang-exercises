@@ -84,9 +84,9 @@ RGBTRIPLE _sobel_filter(int ph, int pw, int height, int width,
                 yxsum[1] = img_ref[h][w].rgbtGreen * yxweight[h][w];
                 yxsum[2] = img_ref[h][w].rgbtBlue * yxweight[h][w];
 
-                sobel[0] = PIX_CAP(sqrt(pow(gxsum[0]) + pow(yxsum[0])));
-                sobel[1] = PIX_CAP(sqrt(pow(gxsum[1]) + pow(yxsum[1])));
-                sobel[2] = PIX_CAP(sqrt(pow(gxsum[2]), pow(yxsum[2])));
+                sobel[0] = PIX_CAP(sqrt(pow(gxsum[0], 2) + pow(yxsum[0], 2)));
+                sobel[1] = PIX_CAP(sqrt(pow(gxsum[1], 2) + pow(yxsum[1], 2)));
+                sobel[2] = PIX_CAP(sqrt(pow(gxsum[2], 2) + pow(yxsum[2], 2)));
 
                 img[h][w].rgbtRed = sobel[0];
                 img[h][w].rgbtGreen = sobel[1];
@@ -109,5 +109,5 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
     memcpy(img_ref, image, sizeof(RGBTRIPLE) * height * width);
     for (int h = 0; h < height; h++)
         for (int w = 0; w < width; w++)
-            _sobel_filter(h, w, height, width, image[height][width], img_ref[height][width]);
+            _sobel_filter(h, w, height, width, image, img_ref);
 }
