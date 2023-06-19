@@ -11,7 +11,9 @@
         "atomic": "c",
         "cstdint": "c",
         "limits.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "helpers.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled",
+    "cSpell.language": "en,pl,en-US",
 }
