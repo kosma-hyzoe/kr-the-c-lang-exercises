@@ -1,7 +1,7 @@
 CC=gcc
 INCDIRS=-I.
 OPT=O0
-CFLAGS=-Wall -Wextra -g  $(INCDIRS) $(OPT)
+CFLAGS=-Wall -Wextra -g -std=c11 -$(OPT) $(INCDIRS)
 
 CFILES=*.c
 BINARY=play
