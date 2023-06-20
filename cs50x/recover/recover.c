@@ -70,6 +70,6 @@ int is_jpeg_header(BYTE *buffer)
     return  *(buffer + 0) == FIRST_SIG_BYTE &&
             *(buffer + 1) == SECOND_SIG_BYTE &&
             *(buffer + 2) == THIRD_SIG_BYTE &&
-            (*(buffer + 4) & FIRST_4_BITS_MASK) == FOURTH_SIG_BYTE_MASK;
+            (*(buffer + 3) & FIRST_4_BITS_MASK) == FOURTH_SIG_BYTE_MASK;
 }
 
