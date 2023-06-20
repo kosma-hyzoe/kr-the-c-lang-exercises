@@ -12,8 +12,10 @@
 #define FIRST_SIG_BYTE 0xff
 #define SECOND_SIG_BYTE 0xd8
 #define THIRD_SIG_BYTE 0xff
-#define FIRST_4_BITS_MASK 0b1111
-#define FOURTH_SIG_BYTE_MASK 0b1110
+
+/* TODO why not binary ??? */
+#define FIRST_4_BITS_MASK 0xf0
+#define FOURTH_SIG_BYTE_MASK 0xe0
 
 typedef uint8_t BYTE;
 
@@ -28,12 +30,13 @@ int main(int argc, char *argv[])
 
     FILE *raw = fopen(argv[1], "r");
     if (raw == NULL) {
+        perror("fopen");
         exit(1);
     }
 
-    FILE *f;
+    FILE *f = NULL;
     int fc = 0;
-    char *fname = malloc(sizeof(char) * FNAME_SIZE);
+    char fname[FNAME_SIZE];
 
     BYTE *buffer = malloc(sizeof(BYTE) * BLOCK_SIZE);
 
@@ -47,10 +50,12 @@ int main(int argc, char *argv[])
                 state = WRITING_JPG;
             }
 
-            sprintf(fname, "%03d.jpg", ++fc);
+            sprintf(fname, "%03d.jpg", fc++);
 
             f = fopen(fname, "w");
             if (f == NULL) {
+                perror("fopen");
+                free(buffer);
                 exit(1);
             }
         }
@@ -59,17 +64,19 @@ int main(int argc, char *argv[])
         }
     }
 
+    fclose(raw);
     free(buffer);
-    fclose(f);
 
 
+    if (f)
+        fclose(f);
 }
 
 int is_jpeg_header(BYTE *buffer)
 {
-    return  *(buffer + 0) == FIRST_SIG_BYTE &&
-            *(buffer + 1) == SECOND_SIG_BYTE &&
-            *(buffer + 2) == THIRD_SIG_BYTE &&
-            (*(buffer + 3) & FIRST_4_BITS_MASK) == FOURTH_SIG_BYTE_MASK;
+    return  buffer[0] == FIRST_SIG_BYTE &&
+            buffer[1] == SECOND_SIG_BYTE &&
+            buffer[2] == THIRD_SIG_BYTE &&
+            (buffer[3] & FIRST_4_BITS_MASK) == FOURTH_SIG_BYTE_MASK;
 }
 
