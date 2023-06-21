@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+
+#define IN 1
+#define OUT 0
 int main(int argc,char* argv[])
 {
     FILE* fp=NULL;
@@ -9,11 +13,12 @@ int main(int argc,char* argv[])
     char  c;
     /*count of words,lines,characters*/
     unsigned long nw=0,nl=0,nc=0;
+	int state;
 
-    if(nfiles==0) 
+    if(nfiles==0)
     {
         fp=stdin; /*standard input*/
-        nfiles++; 
+        nfiles++;
     }
     else /*set to first*/
     {
@@ -27,14 +32,24 @@ int main(int argc,char* argv[])
             fprintf(stderr,"Unable to open input\n");
             exit(-1);
         }
+
         nc=nw=nl=0;
+		state = OUT;
         while((c=getc(fp))!=EOF)
         {
-	        /*TODO:FILL HERE
-		    process the file using getc(fp)
-			*/
+			nc++;
+			if (isspace(c)) {
+				if (state == IN)
+					state = OUT;
+				if (c == '\n')
+					nl++;
+			} else if (state == OUT) {
+				state = IN;
+				nw++;
+			}
         }
-        printf("%ld %s\n",nc,currfile);
+        printf("%ld %ld %ld %s\n",nl,nw,nc,currfile);
+
         /*next file if exists*/
         nfiles--;
         if(nfiles>0)
