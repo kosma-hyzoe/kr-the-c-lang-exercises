@@ -34,13 +34,12 @@ int main(void)
 {
 	int n;
 
-	initialize_world_from_file("glider.txt")
+	initialize_world();
 
 	for (n = 0; n < NUM_GENERATIONS; n++)
 		next_generation();
 
-	/* TODO: output final world state */
-
+	output_world();
 
 	return 0;
 }
