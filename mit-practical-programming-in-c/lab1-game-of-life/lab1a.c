@@ -49,7 +49,9 @@ void next_generation(void) {
 	   generation according to the Game of Life rules
 
 	   Hint: use get_next_state(x,y) */
-
+	for (int x = 0; x < WORLDWIDTH; x++)
+		for (int y = 0; y < WORLDHEIGHT; y++)
+			get_next_state(x, y);
 
 	finalize_evolution(); /* called at end to finalize */
 }
