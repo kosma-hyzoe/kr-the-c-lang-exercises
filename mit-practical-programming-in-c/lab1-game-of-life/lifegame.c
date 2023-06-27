@@ -29,35 +29,47 @@ static int nextstates[WORLDWIDTH][WORLDHEIGHT];
 /* functions to write for Part B of lab */
 void initialize_world_from_file(const char * filename)
 {
-	FILE *f = fopen(filename, "w");
-	if (f == NULL) {
+	FILE *f;
+	int c, state;
+	int x = 0, y = 0;
+
+	if ((f == fopen(filename, "r")) == NULL) {
 		perror("fopen");
-		exit(1);
+		abort();
 	}
 
-	int c;
+	for (int yi = 0; y < WORLDHEIGHT; yi++)
+		for (int xi = 0; x < WORLDWIDTH; xi++)
+			nextstates[xi][yi] = DEAD;
+
+
 	while ((c = getc(f)) != EOF) {
-
+		if (c == '\n') {
+			if (x != WORLDWIDTH)
+				fill_dead_width(x, y);
+			x = 0;
+			y++;
+		} else if (c == CHAR_ALIVE || c == CHAR_DEAD) {
+			world[x][y] = (c == CHAR_ALIVE) ? ALIVE : DEAD;
+			x++;
+		}
 	}
 
-	/* TODO: read the state of the world from a file with
-	   name "filename". Assume file exists, is readable, and
-	   the ith character of the jth line (zero-indexed) describes
-	   world[i][j] according to the characters CHAR_ALIVE and
-	   CHAR_DEAD
+	if (y != WORLDHEIGHT)
+		fill_dead_height(x, y);
 
-	   Assume a line does not contain more than 256 characters
-	   (including newline). If a line doesn't contain WORLDWIDTH
-	   characters, remaining cells in line are presumed DEAD.
-	   Similarly, if the file does not contain WORLDHEIGHT lines,
-	   remaining lines are presumed dead.
+	fclose(f);
+}
 
-	   On error, print some useful error message and call abort().
+void fill_dead_height(int x, int y) {
+	for (int yi = y; yi < WORLDHEIGHT; yi++)
+		for (int xi = 0; xi < WORLDWIDTH; xi++)
+			world[xi][yi] = DEAD;
+}
 
-	   Also need to reset the next generation to DEAD
-	 */
-
-
+void fill_dead_width(int x, int y) {
+	for (int i = x; i < WORLDWIDTH; i++)
+		world[i][y] = DEAD;
 }
 
 void save_world_to_file(const char * filename) {
@@ -72,6 +84,22 @@ void save_world_to_file(const char * filename) {
 	   it to resume a game later
 	 */
 
+	FILE *f;
+
+	if ((f == fopen(filename, "r")) == NULL) {
+		perror("fopen");
+		abort();
+	}
+
+	for (int iy = 0; iy < WORLDHEIGHT; iy++) {
+		for (int ix = 0; ix < WORLDWIDTH; ix++) {
+			if (ix == WORLDWIDTH - 1)
+				// putc('\n'
+		}
+
+	}
+
+
 
 }
 
@@ -85,6 +113,7 @@ void initialize_world(void) {
 	for (i = 0; i < WORLDWIDTH; i++)
 		for (j = 0; j < WORLDHEIGHT; j++)
 			world[i][j] = nextstates[i][j] = DEAD;
+
 	/* pattern "glider" */
 	world[1][2] = ALIVE;
 	world[3][1] = ALIVE;
