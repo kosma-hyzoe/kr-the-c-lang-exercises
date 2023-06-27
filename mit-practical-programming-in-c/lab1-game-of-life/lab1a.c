@@ -49,8 +49,6 @@ void next_generation(void) {
 	for (int x = 0; x < get_world_width(); x++)
 		for (int y = 0; y < get_world_height(); y++)
 			set_cell_state(x, y, get_next_state(x, y));
-
-	finalize_evolution();
 }
 
 int get_next_state(int x, int y) {
