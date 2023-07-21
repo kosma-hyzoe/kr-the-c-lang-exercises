@@ -75,24 +75,29 @@ void build_tree(FILE *fp)
 }
 
 /*
-	function decode
+	@function decode
 */
 void decode(FILE *fin, FILE *fout)
 {
     char c;
     struct tnode *curr = root;
     while ((c = getc(fin)) != EOF) {
-	/*TODO:
-		traverse the tree
-		print the symbols only if you encounter a leaf node
-	*/
-    }
+		if (c == '0')
+			curr = curr->left;
+		else
+			curr = curr->right;
+
+		if (curr->isleaf) {
+			printf("%c", curr->symbol);
+			curr = root;
+		}
+	}
 }
+
 /*
 	@function freetree
 	@desc	  cleans up resources for tree
 */
-
 void freetree(struct tnode *root)
 {
     if (root == NULL)
