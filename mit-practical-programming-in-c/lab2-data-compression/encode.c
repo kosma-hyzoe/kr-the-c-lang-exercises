@@ -88,7 +88,8 @@ void pq_insert(struct tnode *p)
 
 struct tnode *pq_pop()
 {
-    struct tnode *p = NULL;
+    struct tnode *p = qhead;
+    qhead = qhead->next;
     /*TODO: write code to remove front of the queue*/
     printf("popped:%c,%f\n", p->symbol, p->freq);
     return p;
