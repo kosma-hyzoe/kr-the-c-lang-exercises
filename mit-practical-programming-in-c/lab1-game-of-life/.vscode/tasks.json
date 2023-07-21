@@ -9,7 +9,7 @@
 				"-Wall",
 				"-g",
 				"-O0",
-				"lab1a.c", "lifegame.c",
+				"lab1b.c", "lifegame.c",
 				"-o",
 				"${fileDirname}/live"
 			],

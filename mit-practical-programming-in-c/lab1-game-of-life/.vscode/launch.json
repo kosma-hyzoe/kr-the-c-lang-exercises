@@ -5,7 +5,7 @@
         "type": "cppdbg",
         "request": "launch",
         "program": "${workspaceFolder}/live",
-        "args": [],
+        "args": ["sship.txt"],
         "stopAtEntry": false,
         "cwd": "${fileDirname}",
         "environment": [],

@@ -26,20 +26,23 @@ static int world[WORLDWIDTH][WORLDHEIGHT];
 /* next generation cell states */
 static int nextstates[WORLDWIDTH][WORLDHEIGHT];
 
+void fill_dead_width(int x, int y);
+void fill_dead_height(int x, int y);
+
 /* functions to write for Part B of lab */
 void initialize_world_from_file(const char * filename)
 {
 	FILE *f;
-	int c, state;
+	int c;
 	int x = 0, y = 0;
 
-	if ((f == fopen(filename, "r")) == NULL) {
+	if ((f = fopen(filename, "r")) == NULL) {
 		perror("fopen");
 		abort();
 	}
 
-	for (int yi = 0; y < WORLDHEIGHT; yi++)
-		for (int xi = 0; x < WORLDWIDTH; xi++)
+	for (int yi = 0; yi < WORLDHEIGHT; yi++)
+		for (int xi = 0; xi < WORLDWIDTH; xi++)
 			nextstates[xi][yi] = DEAD;
 
 
@@ -86,7 +89,7 @@ void save_world_to_file(const char * filename) {
 
 	FILE *f;
 
-	if ((f == fopen(filename, "r")) == NULL) {
+	if ((f = fopen(filename, "w")) == NULL) {
 		perror("fopen");
 		abort();
 	}
@@ -94,13 +97,13 @@ void save_world_to_file(const char * filename) {
 	for (int iy = 0; iy < WORLDHEIGHT; iy++) {
 		for (int ix = 0; ix < WORLDWIDTH; ix++) {
 			if (ix == WORLDWIDTH - 1)
-				// putc('\n'
+				putc('\n', f);
+			else
+				putc(world[ix][iy] == ALIVE ? CHAR_ALIVE : CHAR_DEAD, f);
 		}
-
 	}
 
-
-
+	fclose(f);
 }
 
 /* you shouldn't need to edit anything below this line */
