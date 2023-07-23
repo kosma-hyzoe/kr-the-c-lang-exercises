@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define MAX_SYMBOLS 255
 #define MAX_LEN 7
@@ -59,10 +60,8 @@ void pq_insert(struct tnode *p)
 {
     struct tnode *curr = NULL;
     struct tnode *prev = NULL;
-    printf("inserting:%c,%f\n", p->symbol, p->freq);
 
-    if (qhead == NULL) /*qhead is null*/
-    {
+    if (qhead == NULL) {
         qhead = p;
         return;
     }
@@ -71,13 +70,53 @@ void pq_insert(struct tnode *p)
         p->next = qhead;
         qhead = p;
     } else {
-        curr = qhead;
-        while (p->freq > curr->freq && curr->next != NULL)
-            curr = curr->next;
+        if (qhead->next == NULL) {
+            qhead->next = p;
+            return;
+        }
+        curr = qhead->next;
+        prev = qhead;
 
-        p->next = curr->next;
-        curr->next = p;
+        while (p->freq > curr->freq) {
+            if (curr->next == NULL) {
+                curr->next = p;
+                return;
+            }
+            prev = curr;
+            curr = curr->next;
+        }
+
+        p->next = curr;
+        prev->next = p;
     }
+}
+
+/*
+    @function   pq_free
+    @desc       free resources from the priority queue
+*/
+void pq_free(struct tnode *p)
+{
+    struct tnode *curr = p, *next;
+
+    while (curr != NULL) {
+        next = curr->next;
+        free(curr);
+        curr = next;
+    }
+}
+
+void tree_free(struct tnode *t)
+{
+    if (t == NULL)
+        return;
+
+    if (t->left)
+        free(t->left);
+    if (t->right)
+        free(t->right);
+
+    free(t);
 }
 
 /*
@@ -85,12 +124,14 @@ void pq_insert(struct tnode *p)
     @desc     removes the first element
     NOTE:     makes use of global variable qhead
 */
-
 struct tnode *pq_pop()
 {
+    if (qhead == NULL)
+        return NULL;
+
     struct tnode *p = qhead;
     qhead = qhead->next;
-    /*TODO: write code to remove front of the queue*/
+
     printf("popped:%c,%f\n", p->symbol, p->freq);
     return p;
 }
@@ -106,13 +147,22 @@ void generate_code(struct tnode *root, int depth)
     int len; /*length of code*/
     if (root->isleaf) {
         symbol = root->symbol;
-        len = depth;
+        len = depth - 1;
         /*start backwards*/
-        code[symbol][len] = 0;
-        /*
-                TODO: follow parent pointer to the top
-                to generate the code string
-        */
+
+        struct tnode *par = root->parent;
+        struct tnode *prev = root;
+        if (root->symbol == 'b')
+            printf("\n");
+        do {
+            if (par->left->freq == par->right->freq ||
+                prev->freq == par->left->freq)
+                code[symbol][len] = '0';
+            else
+                code[symbol][len] = '1';
+            len--;
+            prev = par;
+        } while ((par = par->parent) != NULL);
         printf("built code:%c,%s\n", symbol, code[symbol]);
     } else {
         generate_code(root->left, depth + 1);
@@ -129,7 +179,7 @@ void dump_code(FILE *fp)
     int i = 0;
     for (i = 0; i < MAX_SYMBOLS; i++) {
         if (code[i][0]) /*non empty*/
-        fprintf(fp, "%c %s\n", i, code[i]);
+            fprintf(fp, "%c %s\n", i, code[i]);
     }
 }
 
@@ -144,6 +194,7 @@ void encode(char *str, FILE *fout)
         str++;
     }
 }
+
 /*
     @function main
 */
@@ -157,19 +208,10 @@ int main()
     int i = 0;
     const char *CODE_FILE = "code.txt";
     const char *OUT_FILE = "encoded.txt";
+
     FILE *fout = NULL;
     /*zero out code*/
     memset(code, 0, sizeof(code));
-
-    /*testing queue*/
-    pq_insert(talloc('a', 0.1));
-    pq_insert(talloc('b', 0.2));
-    pq_insert(talloc('c', 0.15));
-    /*making sure it pops in the right order*/
-    puts("making sure it pops in the right order");
-    while ((p = pq_pop())) {
-        free(p);
-    }
 
     qhead = NULL;
     /*initialize with freq*/
@@ -194,8 +236,10 @@ int main()
     }
     /*get root*/
     root = pq_pop();
+
     /*build code*/
     generate_code(root, 0);
+
     /*output code*/
     puts("code:");
     fout = fopen(CODE_FILE, "w");
@@ -204,12 +248,14 @@ int main()
     fclose(fout);
 
     /*encode a sample string*/
-    puts("orginal:abba cafe bad");
+    puts("orginal: abba cafe bad");
     fout = fopen(OUT_FILE, "w");
     encode("abba cafe bad", stdout);
     encode("abba cafe bad", fout);
+
     fclose(fout);
+    pq_free(qhead);
+    tree_free(root);
+
     getchar();
-    /*TODO: clear resources*/
-    return 0;
 }
