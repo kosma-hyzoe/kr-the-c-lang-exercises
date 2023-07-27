@@ -112,9 +112,9 @@ void tree_free(struct tnode *t)
         return;
 
     if (t->left)
-        free(t->left);
+        tree_free(t->left);
     if (t->right)
-        free(t->right);
+        tree_free(t->right);
 
     free(t);
 }
@@ -233,6 +233,7 @@ int main()
         p->isleaf = 0;
         /*add the new node to the queue*/
         pq_insert(p);
+        /* free resources */
     }
     /*get root*/
     root = pq_pop();
@@ -254,8 +255,5 @@ int main()
     encode("abba cafe bad", fout);
 
     fclose(fout);
-    pq_free(qhead);
     tree_free(root);
-
-    getchar();
 }

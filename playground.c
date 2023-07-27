@@ -1,9 +1,15 @@
 #include <stdio.h>
 #include <limits.h>
-std::tool
+#include <stdlib.h>
+
+struct foo {
+	struct foo *next;
+	int foo;
+	int bar;
+};
 
 int main()
 {
-    int x;
-    printf("%d\n", (x = 1));
+	struct foo *f = NULL;
+	free(f->next);
 }
